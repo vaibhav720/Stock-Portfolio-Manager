@@ -1,6 +1,5 @@
 import * as React from "react";
-import axios from 'axios';
-import { Suspense, useEffect, Component } from "react";
+import { Suspense, useEffect } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -31,9 +30,7 @@ import LightWeight from "../charts/LightWeightChart";
 //import { fetchData } from "../charts/data.js";
 import TradingWidget from "../charts/tradingView";
 import Quotes from "../charts/Quotes";
-import {loadNews} from "../API/Fetchapi";
-import NewsCard from "../Cards/NewsCard";
-import NewsLoad from "../charts/NewsLoad";
+import LightWeightChart from "../charts/LightWeightChart";
 
 function Copyright(props) {
   return (
@@ -103,7 +100,6 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
-  
   
   const toggleDrawer = () => {
     console.log(234);
@@ -186,94 +182,13 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                <MultiActionAreaCard />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                  <MultiActionAreaCard />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Orders />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <FullFeaturedDemo />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Suspense fallback={<h1>Loading profile...</h1>}>
-                    <TradingWidget />
-                  </Suspense>
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <NewsLoad />
               
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <LightWeightChart />
+                </Paper>
+              </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
@@ -283,8 +198,7 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard(async) {
-  
+export default function Adv(async) {
   return (
     <Suspense fallback={<h1>Loading profile...</h1>}>
       <DashboardContent />

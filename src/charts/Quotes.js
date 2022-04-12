@@ -10,13 +10,16 @@ function preventDefault(event) {
 
 export default function Quotes( ) {
         const [quotesData,setQuotesData] = React.useState({}) ;
-        React.useEffect(async () => {
-        await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=GGYN50DSU734HJ1G`).then(res => {
+       
+            axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=GGYN50DSU734HJ1G`).then(res => {
             const pData = res.data["Global Quote"];
             setQuotesData(pData);
-            console.log(quotesData["01. symbol"]);
+            
+          }).catch(err=>{
+            console.log(err);
           })
-        }, []);
+
+          
       
 
   return (

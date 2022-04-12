@@ -15,14 +15,14 @@ export default function TradingWidget() {
         <TradingViewWidget
           symbol="NASDAQ:AAPL"
           theme={Themes.DARK}
-          locale="es"
+          locale="en"
           autosize
         />
       </div>
 
       <TechnicalAnalysis symbol={"NASDAQ:AAPL"} dark locale="es" />
 
-      <MarketOverview locale="es" />
+      <MarketOverview locale="en" />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import MultiActionAreaCard from "./Cards/card";
 import SignInSide from "./Registration/signin";
 import Dashboard from "./Dashboard/Dashboard";
+import Advchart from "./Dashboard/Advchart";
 
 ReactDOM.render(
   <StyledEngineProvider injectFirst>
