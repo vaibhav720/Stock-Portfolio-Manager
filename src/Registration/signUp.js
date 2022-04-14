@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  {useRef, useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,13 +13,18 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useAuth} from "../contexts/AuthContext";
+import {  useNavigate } from 'react-router-dom';
+
 
 function Copyright(props) {
+  
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="">
+        Vaibhav Parikh
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -29,14 +35,37 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const {signup} = useAuth();
+  const [error,setError] =useState('');
+  const [loading,setLoading] =useState(false);
+  const history = useNavigate();
+
+  async function handleSubmit(e){
+    
+      e.preventDefault()
+      
+    const data = new FormData(e.currentTarget);
+      if(data.get("password-confirm") !==data.get('password'))
+      {
+          return setError("Passwords do not match");
+      }
+      try{
+
+          setError("");
+          setLoading(true);
+          await signup(data.get('email'),data.get('password'));
+          history('/');
+      }catch{
+          setError("Failed to create account")
+      }
+      setLoading(false);
+
+      
+  }
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -70,7 +99,7 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -81,6 +110,7 @@ export default function SignInSide() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                ref={emailRef}
                 autoFocus
               />
               <TextField
@@ -91,19 +121,32 @@ export default function SignInSide() {
                 label="Password"
                 type="password"
                 id="password"
+                ref={passwordRef}
                 autoComplete="current-password"
               />
-              <FormControlLabel
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password-confirm"
+                label="Confirm Password"
+                type="password"
+                id="password-confirm"
+                ref={passwordConfirmRef}
+                autoComplete="current-password"
+              />
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
+                disabled={loading}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -112,8 +155,8 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link href="/login" variant="body2">
+                    {"Have account? Sign In"}
                   </Link>
                 </Grid>
               </Grid>

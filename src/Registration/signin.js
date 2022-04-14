@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useRef, useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,8 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import {useAuth} from "../contexts/AuthContext";
 
 function Copyright(props) {
   return (
@@ -29,13 +32,33 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const emailRef = useRef();
+    const passwordRef = useRef();
+    const {login} = useAuth();
+    const [error,setError] =useState('');
+    const [loading,setLoading] =useState(false);
+    const history = useNavigate();
+
+
+  async function handleSubmit (event)  {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+
+    try{
+
+      setError("");
+      setLoading(true);
+      await login(data.get('email'),data.get('password'));
+      history('/');
+  }catch{
+      setError("Failed to sign in")
+  }
+  setLoading(false);
   };
 
   return (

@@ -1,9 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { createChart, CrosshairMode } from "lightweight-charts";
+//import { priceData } from "./priceData";
+//import { areaData } from './areaData';
+//import { volumeData } from "./volumeData";
 
+import "./styles.css";
 
-export default function LightWeightChart() {
+export default function App() {
   const chartContainerRef = useRef();
   const chart = useRef();
   const resizeObserver = useRef();
@@ -13,7 +17,7 @@ export default function LightWeightChart() {
     const vol = [];
     const mov = [];
     //var str={"time":'2022-1-1',"open":50,"high":45,"low":34,"close":34};
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=A3QPG0GAAYX8VGI2`;
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=RELIANCE.BSE&outputsize=full&apikey=A3QPG0GAAYX8VGI2`;
     const fetchData = async () => {
       await fetch(API_Call)
         .then(function (response) {
@@ -21,7 +25,7 @@ export default function LightWeightChart() {
         })
         .then(function (data) {
           let time = data["Time Series (Daily)"];
-          console.log(time);
+          console.log(data);
           var co = 1;
           var avr = 0;
           for (var key in time) {
@@ -47,15 +51,12 @@ export default function LightWeightChart() {
             vol.push(bb);
             arr.push(aa);
             mov.push(cc);
-            
           }
-          console.log(vol);
-            console.log(arr);
-            console.log(mov);
+
           console.log("2");
           chart.current = createChart(chartContainerRef.current, {
-            width: 600,
-            height: 400,
+            width: chartContainerRef.current.clientWidth,
+            height: chartContainerRef.current.clientHeight,
             layout: {
               backgroundColor: "#253248",
               textColor: "rgba(255, 255, 255, 0.9)"
@@ -112,9 +113,9 @@ export default function LightWeightChart() {
               }
             })
           });
-          console.log(5);
+
           areaSeries.setData(mov);
-          
+
           areaSeries.setMarkers([
             {
               time: "2019-04-09",
@@ -139,7 +140,6 @@ export default function LightWeightChart() {
               size: 2
             }
           ]);
-          
 
           chart.current.subscribeCrosshairMove((param) => {
             // console.log(param.hoveredMarkerId);
@@ -148,7 +148,7 @@ export default function LightWeightChart() {
           chart.current.subscribeClick((param) => {
             //console.log(param.hoveredMarkerId);
           });
-          
+
           const priceLine = areaSeries.createPriceLine({
             price: 2500.0,
             color: "green",
@@ -199,8 +199,10 @@ export default function LightWeightChart() {
       return () => resizeObserver.current.disconnect();
     };
     fetchData();
-  },[]);
+  });
 
+  // Resize chart on container resizes.
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
@@ -208,4 +210,5 @@ export default function LightWeightChart() {
     </div>
   );
 }
+
 

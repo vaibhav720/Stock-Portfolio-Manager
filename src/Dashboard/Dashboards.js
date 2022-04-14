@@ -1,4 +1,5 @@
 import * as React from "react";
+import  {useRef, useState} from 'react';
 import axios from 'axios';
 import { Suspense, useEffect, Component } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
@@ -34,6 +35,11 @@ import Quotes from "../charts/Quotes";
 import {loadNews} from "../API/Fetchapi";
 import NewsCard from "../Cards/NewsCard";
 import NewsLoad from "../charts/NewsLoad";
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import FeaturedPost from "../charts/Intro";
+
 
 function Copyright(props) {
   return (
@@ -103,7 +109,23 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
+
   
+  const[error,setError]= useState("");
+  const {currentUser, logout} = useAuth();
+  const history = useNavigate();
+  
+  async function handleLogout(){
+    setError('');
+    try{
+        await logout();
+        history('/login');
+
+    }
+    catch{
+        setError("Failed to logout");
+    }
+}
   
   const toggleDrawer = () => {
     console.log(234);
@@ -149,6 +171,11 @@ function DashboardContent() {
             <IconButton color="inherit">
               <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
             </IconButton>
+            <IconButton color="inherit"  onClick={handleLogout}>
+              <Badge color="secondary">
+                <ExitToAppIcon />
+              </Badge>
+            </IconButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -186,6 +213,7 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
+              <FeaturedPost/>
               {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
