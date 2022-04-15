@@ -46,6 +46,9 @@
 
 ![image](https://user-images.githubusercontent.com/56918464/163450012-2f6d8f10-d5cc-419e-a6bb-4e08cda8cad3.png)
 
+### OHLC chart
+
+![image](https://user-images.githubusercontent.com/56918464/163514241-c19a101f-36e4-46c0-966f-38b53bc7ea6b.png)
 
 ### Stock Data with smart tools
 
@@ -54,10 +57,21 @@
 ### Stock listing in particular MIC
 
 ### Different Indicators
+![image](https://user-images.githubusercontent.com/56918464/163514301-d4dbcc2b-771b-4748-b1c6-c71026c215c3.png)
+
+![image](https://user-images.githubusercontent.com/56918464/163514340-2141b50e-007d-4e97-b8ea-bf3bf14625aa.png)
+
+
+### Company wish news from different sources
+
+![image](https://user-images.githubusercontent.com/56918464/163514415-8a88b7f3-dc90-4339-acc1-18a0d32878e8.png)
+
 
 ### financial report of company
 
 ### Last few days insider trading details
+![image](https://user-images.githubusercontent.com/56918464/163514483-252e2bdf-91cf-4ac5-9484-af648e59e39d.png)
+
 
 ### Sentiment analysis of people on Reddit and Twitter for particular company
 
