@@ -50,7 +50,11 @@
 
 ![image](https://user-images.githubusercontent.com/56918464/163514241-c19a101f-36e4-46c0-966f-38b53bc7ea6b.png)
 
+![image](https://user-images.githubusercontent.com/56918464/163534876-3cbb40aa-1bff-451e-b303-62b597a04763.png)
+
+
 ### Stock Data with smart tools
+![image](https://user-images.githubusercontent.com/56918464/163532959-0a7fa9b5-2ee7-4811-a7d5-b0a6a64837c2.png)
 
 ### Description about company
 
@@ -88,5 +92,4 @@ npm install
 # start development server
 npm start
 ```
-
 
