@@ -12,7 +12,7 @@ export default function App() {
   const chart = useRef();
   const resizeObserver = useRef();
 
-  useEffect(() => {
+  
     const arr = [];
     const vol = [];
     const mov = [];
@@ -198,6 +198,7 @@ export default function App() {
 
       return () => resizeObserver.current.disconnect();
     };
+    useEffect(() => {
     fetchData();
   });
 

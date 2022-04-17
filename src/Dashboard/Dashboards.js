@@ -213,7 +213,7 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              <FeaturedPost/>
+              
               {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper

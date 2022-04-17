@@ -1,11 +1,13 @@
 import * as React from 'react';
+
+import {useRef, useState,useEffect} from 'react'
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
+import { rows } from './indData';
 import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import TablePagination from '@mui/material/TablePagination';
@@ -31,21 +33,10 @@ export default function Stocks() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  
 
-  
-  const [rows,setRows]= React.useState([]);
-  const fetchData = async () => {
-   await axios.get("https://finnhub.io/api/v1/stock/symbol?exchange=ns&token=c94i99aad3if4j50rvn0").then(res=>{
-    const pData= res.data;
-    console.log(pData);
-    setRows(pData["data"]);
-    })
-  }
-  fetchData();
   return (
     <React.Fragment>
-      <Title>Inside Transaction</Title>
+      <Title>Stock Listing with symbol</Title>
       <Table size="medium">
         <TableHead>
           <TableRow>

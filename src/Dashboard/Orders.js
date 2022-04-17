@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import {useRef, useState,useEffect} from 'react'
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -33,11 +35,16 @@ export default function Orders() {
     setPage(0);
   };
   const [rows,setRows]= React.useState([]);
+  const fetchData = () => {
   axios.get("https://finnhub.io/api/v1/stock/insider-transactions?symbol=AAPL&token=c94i99aad3if4j50rvn0").then(res=>{
     const pData= res.data;
     console.log(pData);
     setRows(pData["data"]);
   })
+}
+useEffect(() => {
+    fetchData()
+}, [])
   return (
     <React.Fragment>
       <Title>Inside Transaction</Title>

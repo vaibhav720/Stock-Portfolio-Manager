@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import {useRef, useState,useEffect} from 'react'
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from '../Dashboard/Title';
@@ -10,7 +12,7 @@ function preventDefault(event) {
 
 export default function Quotes( ) {
         const [quotesData,setQuotesData] = React.useState({}) ;
-       
+        const fetchData = () => {
             axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=GGYN50DSU734HJ1G`).then(res => {
             const pData = res.data["Global Quote"];
             setQuotesData(pData);
@@ -18,7 +20,10 @@ export default function Quotes( ) {
           }).catch(err=>{
             console.log(err);
           })
-
+        }
+        useEffect(() => {
+          fetchData()
+          }, [])
           
       
 

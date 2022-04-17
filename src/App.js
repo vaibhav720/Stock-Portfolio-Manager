@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Signup from './Registration/SignUp';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter , Routes, Route} from "react-router-dom";
@@ -6,13 +7,28 @@ import Login from './Registration/SignIn';
 import PrivateRoute from './PrivateRoute';
 import UpdateProfile from './UpdateProfile';
 import MarketNews from './Dashboard/MarketNews';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
   return (
 
     
-     
+    <ThemeProvider theme={theme}>
+    <CssBaseline />
          <BrowserRouter>
          <AuthProvider> 
            <Routes>
@@ -30,6 +46,8 @@ function App() {
          </AuthProvider>
 
          </BrowserRouter>
+         </ThemeProvider>
+
        
     
     
