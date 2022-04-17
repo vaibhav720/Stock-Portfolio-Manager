@@ -47,7 +47,7 @@ export default function Stocks() {
             <TableCell>shareClassFIGI</TableCell>
             
             <TableCell>type</TableCell>
-            <TableCell>PRESS TO KNOW MORE</TableCell>
+            <TableCell>Add in watch list</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

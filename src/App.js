@@ -10,7 +10,8 @@ import MarketNews from './Dashboard/MarketNews';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import Adv from './Dashboard/Advchart';
+import LightWeightChartSelf from"./charts/LightWeightChart";
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -41,6 +42,15 @@ function App() {
              <Route path='/forgot-password' element={<ForgotPassword/>} /> */}
              <Route exact path='/' element={<PrivateRoute/>}>
                 <Route exact path='/' element={<MarketNews/>} />
+             </Route>
+             <Route exact path='/dashboard' element={<PrivateRoute/>}>
+                <Route exact path='/dashboard' element={<Dashboard/>} />
+             </Route>
+             <Route exact path='/advanceChart' element={<PrivateRoute/>}>
+                <Route exact path='/advanceChart' element={<Adv/>} />
+             </Route>
+             <Route exact path='/lightWeight' element={<PrivateRoute/>}>
+                <Route exact path='/lightWeight' element={<LightWeightChartSelf/>} />
              </Route>
            </Routes>
          </AuthProvider>

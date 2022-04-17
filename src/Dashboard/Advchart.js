@@ -105,7 +105,8 @@ function DashboardContent() {
     console.log(234);
     setOpen(!open);
   };
-
+  
+  
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -135,7 +136,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Advance Chart
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -198,7 +199,7 @@ function DashboardContent() {
   );
 }
 
-export default function Adv(async) {
+export default function Adv() {
   return (
     <Suspense fallback={<h1>Loading profile...</h1>}>
       <DashboardContent />

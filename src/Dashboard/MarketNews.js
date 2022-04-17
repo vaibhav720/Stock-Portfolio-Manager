@@ -35,7 +35,7 @@ import Quotes from "../charts/Quotes";
 import {loadNews} from "../API/Fetchapi";
 import NewsCard from "../Cards/NewsCard";
 import NewsLoad from "../charts/NewsLoad";
-
+import CheckboxesTags from "./SearchBar"
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -160,8 +160,9 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Home
             </Typography>
+            <CheckboxesTags/>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />

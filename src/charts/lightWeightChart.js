@@ -7,7 +7,7 @@ import { createChart, CrosshairMode } from "lightweight-charts";
 
 import "./styles.css";
 
-export default function App() {
+export default function LightWeightChartSelf() {
   const chartContainerRef = useRef();
   const chart = useRef();
   const resizeObserver = useRef();
@@ -17,42 +17,49 @@ export default function App() {
     const vol = [];
     const mov = [];
     //var str={"time":'2022-1-1',"open":50,"high":45,"low":34,"close":34};
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=RELIANCE.BSE&outputsize=full&apikey=A3QPG0GAAYX8VGI2`;
+    let API_Call = `https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&from=1642429236&to=1650205236&token=c94i99aad3if4j50rvn0`;
     const fetchData = async () => {
       await fetch(API_Call)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
-          let time = data["Time Series (Daily)"];
+          let close = data["c"];
+          let open = data["o"];
+          let volume = data["v"];
+          let time = data["t"];
+          let high = data["h"];
+          let low = data["l"];
           console.log(data);
           var co = 1;
           var avr = 0;
-          for (var key in time) {
-            if (!time.hasOwnProperty(key)) continue;
+          time.forEach((num1, key) =>{
+            var tim = new Date(time[key] * 1000)
+            var newTime = tim.toLocaleDateString("en-US");
+            console.log(newTime);
             var aa = {
-              time: key,
-              open: parseInt(time[key]["1. open"], 10),
-              high: parseInt(time[key]["2. high"], 10),
-              low: parseInt(time[key]["3. low"], 10),
-              close: parseInt(time[key]["4. close"], 10)
+              time: newTime,
+              open: parseInt(open[key], 10),
+              high: parseInt(high[key], 10),
+              low: parseInt(low[key], 10),
+              close: parseInt(close[key], 10)
             };
-            var closePrice = parseInt(time[key]["4. close"], 10);
+            var closePrice = parseInt(close[key], 10);
             avr = (avr * (co - 1) + closePrice) / co;
             var cc = {
-              time: key,
+              time: newTime,
               value: avr
             };
             var bb = {
-              time: key,
-              value: parseInt(time[key]["5. volume"], 10)
+              time: newTime,
+              value: parseInt(volume[key], 10)
             };
             co++;
             vol.push(bb);
             arr.push(aa);
             mov.push(cc);
-          }
-
+          })
+          console.log(arr);
           console.log("2");
           chart.current = createChart(chartContainerRef.current, {
             width: chartContainerRef.current.clientWidth,
@@ -104,12 +111,12 @@ export default function App() {
             lineType: 1,
             autoscaleInfoProvider: () => ({
               priceRange: {
-                minValue: 800,
-                maxValue: 2700
+                minValue: 100,
+                maxValue: 250
               },
               margins: {
-                above: 100,
-                below: 100
+                above: 5,
+                below: 5
               }
             })
           });
@@ -118,20 +125,20 @@ export default function App() {
 
           areaSeries.setMarkers([
             {
-              time: "2019-04-09",
+              time: "2022-03-09",
               position: "aboveBar",
               color: "black",
               shape: "arrowDown"
             },
             {
-              time: "2019-05-31",
+              time: "2022-02-19",
               position: "belowBar",
               color: "red",
               shape: "arrowUp",
               id: "id3"
             },
             {
-              time: "2019-05-31",
+              time: "2019-02-14",
               position: "belowBar",
               color: "orange",
               shape: "arrowUp",
@@ -150,7 +157,7 @@ export default function App() {
           });
 
           const priceLine = areaSeries.createPriceLine({
-            price: 2500.0,
+            price: 150.0,
             color: "green",
             lineWidth: 2,
 
@@ -159,13 +166,13 @@ export default function App() {
           });
 
           priceLine.applyOptions({
-            price: 2000.0,
+            price: 150.0,
             color: "red",
             lineWidth: 3,
             axisLabelVisible: false,
             title: "P/L 600"
           });
-          const coordinate = areaSeries.priceToCoordinate(2500.5);
+          const coordinate = areaSeries.priceToCoordinate(150.5);
           console.log(coordinate);
           const screenshot = chart.current.takeScreenshot();
 
@@ -202,8 +209,6 @@ export default function App() {
     fetchData();
   });
 
-  // Resize chart on container resizes.
-  useEffect(() => {}, []);
 
   return (
     <div className="App">
