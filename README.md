@@ -59,6 +59,8 @@
 ### Description about company
 
 ### Stock listing in particular MIC
+![image](https://user-images.githubusercontent.com/56918464/163714112-843453ce-96fb-4aec-9289-5337a8cee6c0.png)
+
 
 ### Different Indicators
 ![image](https://user-images.githubusercontent.com/56918464/163514301-d4dbcc2b-771b-4748-b1c6-c71026c215c3.png)
