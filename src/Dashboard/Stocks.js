@@ -13,9 +13,10 @@ import Fingerprint from '@mui/icons-material/Fingerprint';
 import TablePagination from '@mui/material/TablePagination';
 import Title from './Title';
 import axios from "axios";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from '../Firebase';
 
-
-
+import { useAuth } from '../contexts/AuthContext';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -28,6 +29,25 @@ export default function Stocks() {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+  
+  const[error,setError]= useState("");
+  const {currentUser, logout} = useAuth();
+  const history = useNavigate();
+  
+  async function handleLogout(){
+    setError('');
+    try{
+      const frankDocRef = doc(db, "Users", currentUser.email);
+      await updateDoc(frankDocRef, {
+        "Stocks":[
+          
+        ]
+    });
+    }
+    catch{
+        setError("Failed to logout");
+    }
+}
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -60,7 +80,7 @@ export default function Stocks() {
               <TableCell>{row.shareClassFIGI}</TableCell>
               
               <TableCell>{row.type}</TableCell>
-              <TableCell><IconButton aria-label="fingerprint" color="success">
+              <TableCell><IconButton type="submit" value={row.displaySymbol} aria-label="fingerprint" onClick={onAdd} color="success">
         <Fingerprint />
       </IconButton>
 </TableCell>

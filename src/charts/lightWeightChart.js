@@ -17,7 +17,7 @@ export default function LightWeightChartSelf() {
     const vol = [];
     const mov = [];
     //var str={"time":'2022-1-1',"open":50,"high":45,"low":34,"close":34};
-    let API_Call = `https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&from=1642429236&to=1650205236&token=c94i99aad3if4j50rvn0`;
+    let API_Call = `https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&from=1618670788&to=1650205236&token=c94i99aad3if4j50rvn0`;
     const fetchData = async () => {
       await fetch(API_Call)
         .then(function (response) {
@@ -111,12 +111,12 @@ export default function LightWeightChartSelf() {
             lineType: 1,
             autoscaleInfoProvider: () => ({
               priceRange: {
-                minValue: 100,
-                maxValue: 250
+                minValue: 130,
+                maxValue: 210
               },
               margins: {
-                above: 5,
-                below: 5
+                above: 2,
+                below: 2
               }
             })
           });
@@ -138,7 +138,7 @@ export default function LightWeightChartSelf() {
               id: "id3"
             },
             {
-              time: "2019-02-14",
+              time: "2022-02-14",
               position: "belowBar",
               color: "orange",
               shape: "arrowUp",

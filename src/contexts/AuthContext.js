@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState} from 'react'
-import { auth } from '../Firebase';
-
+import { auth, db } from '../Firebase';
+import { collection, addDoc } from "firebase/firestore"; 
 const AuthContext = React.createContext()
 
 export function useAuth(){
@@ -14,6 +14,9 @@ export function AuthProvider({children}) {
     const [loading, setLoading] = useState(true);
     function signup(email,password)
     {
+        addDoc(collection(db, "Users"), {
+            email: email
+          });
         return auth.createUserWithEmailAndPassword(email,password);
     }
 
@@ -42,6 +45,7 @@ export function AuthProvider({children}) {
     useEffect(()=>{
         const unsubscribe =  auth.onAuthStateChanged(user=>{
             setCurrentUser(user);
+           // console.log(currentUser);
             setLoading(false);
         })
 

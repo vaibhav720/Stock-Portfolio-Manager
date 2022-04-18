@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useAuth} from "../contexts/AuthContext";
 import {  useNavigate } from 'react-router-dom';
-
+import { collection, addDoc } from "firebase/firestore";
 
 function Copyright(props) {
   
