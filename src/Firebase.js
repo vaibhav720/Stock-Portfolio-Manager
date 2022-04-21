@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { getFirestore } from "firebase/firestore";
+
 const app = firebase.initializeApp({
   apiKey: "AIzaSyAYbESiamh6AnajboPJGfvKlp-OtnELTLs",
   authDomain: "stock-portfolio-manager-ec897.firebaseapp.com",

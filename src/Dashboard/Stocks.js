@@ -13,7 +13,7 @@ import Fingerprint from '@mui/icons-material/Fingerprint';
 import TablePagination from '@mui/material/TablePagination';
 import Title from './Title';
 import axios from "axios";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc,addDoc,collection, arrayUnion } from "firebase/firestore";
 import { auth, db } from '../Firebase';
 
 import { useAuth } from '../contexts/AuthContext';
@@ -32,21 +32,32 @@ export default function Stocks() {
   
   const[error,setError]= useState("");
   const {currentUser, logout} = useAuth();
-  const history = useNavigate();
   
-  async function handleLogout(){
-    setError('');
-    try{
-      const frankDocRef = doc(db, "Users", currentUser.email);
-      await updateDoc(frankDocRef, {
-        "Stocks":[
-          
-        ]
-    });
-    }
-    catch{
-        setError("Failed to logout");
-    }
+  
+  async function onAdd(props){
+    // await addDoc(collection(db, "Users"), {
+    //   email: currentUser.email,
+    //   Stocks: arrayUnion({
+    //     date: "",
+    //     value:0,
+    //     quantity:0,
+    //     name:props.description,
+    //     symbol:props.displaySymbol
+    //   }
+    // })
+    const washingtonRef = doc(db, "Users", currentUser.email);
+    const values ={
+      dates:"",
+      value:0,
+      quantity:0,
+      name:props.description,
+      symbol:props.displaySymbol
+     }
+     console.log(props);
+// Atomically add a new region to the "regions" array field.
+    await updateDoc(washingtonRef, {
+     Stock: arrayUnion(values)
+  });
 }
 
   const handleChangeRowsPerPage = (event) => {
@@ -71,8 +82,8 @@ export default function Stocks() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-            <TableRow >
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,i) => (
+            <TableRow key={i}>
               <TableCell>{row.description}</TableCell>
               <TableCell>{row.displaySymbol}</TableCell>
               <TableCell>{row.figi}</TableCell>
@@ -80,7 +91,7 @@ export default function Stocks() {
               <TableCell>{row.shareClassFIGI}</TableCell>
               
               <TableCell>{row.type}</TableCell>
-              <TableCell><IconButton type="submit" value={row.displaySymbol} aria-label="fingerprint" onClick={onAdd} color="success">
+              <TableCell><IconButton type="submit" value={row} aria-label="fingerprint" onClick={()=>onAdd(row)} color="success">
         <Fingerprint />
       </IconButton>
 </TableCell>

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {useEffect} from 'react'
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import axios from 'axios';
 const columns : GridColDef[] = [
@@ -90,6 +91,7 @@ export default function Table() {
 const [rows: GridRowsProp,setRows] =React.useState([]);
   const [quarterlyReports, setQuarterlyReports] = React.useState([]);
   const tem=[];
+  const fetchData = () => {
     axios
       .get(
         `https://www.alphavantage.co/query?function=CASH_FLOW&symbol=IBM&apikey=A3QPG0GAAYX8VGI2`
@@ -111,7 +113,10 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
         setRows(tem);
         console.log(tem);
       });
-      
+    }
+    useEffect(() => {
+      fetchData()
+      }, [])
   
   return (
     <div style={{ height: 300, width: '100%' }}>

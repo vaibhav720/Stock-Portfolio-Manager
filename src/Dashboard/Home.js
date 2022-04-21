@@ -1,4 +1,5 @@
 import * as React from "react";
+import  {useRef, useState} from 'react';
 import axios from 'axios';
 import { Suspense, useEffect, Component } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
@@ -34,6 +35,12 @@ import Quotes from "../charts/Quotes";
 import {loadNews} from "../API/Fetchapi";
 import NewsCard from "../Cards/NewsCard";
 import NewsLoad from "../charts/NewsLoad";
+import CheckboxesTags from "./SearchBar"
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import Stocks from "./Stocks";
+import UserList from "../charts/UserList";
 
 function Copyright(props) {
   return (
@@ -104,7 +111,22 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   
+  const[error,setError]= useState("");
+  const {currentUser, logout} = useAuth();
+  const history = useNavigate();
   
+  async function handleLogout(){
+    setError('');
+    try{
+        await logout();
+        history('/login');
+
+    }
+    catch{
+        setError("Failed to logout");
+    }
+}
+
   const toggleDrawer = () => {
     console.log(234);
     setOpen(!open);
@@ -139,8 +161,9 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Home
             </Typography>
+            <CheckboxesTags/>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
@@ -148,6 +171,11 @@ function DashboardContent() {
             </IconButton>
             <IconButton color="inherit">
               <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
+            </IconButton>
+            <IconButton color="inherit"  onClick={handleLogout}>
+              <Badge color="secondary">
+                <ExitToAppIcon />
+              </Badge>
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -186,8 +214,7 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              
-              <NewsLoad />
+              <UserList/>
               
             </Grid>
             <Copyright sx={{ pt: 4 }} />
@@ -198,7 +225,7 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard(async) {
+export default function WatchList(async) {
   
   return (
     <Suspense fallback={<h1>Loading profile...</h1>}>

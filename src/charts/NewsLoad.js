@@ -1,9 +1,5 @@
 import * as React from 'react';
-
-import {useRef, useState,useEffect} from 'react'
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import Title from '../Dashboard/Title';
+import {useEffect} from 'react'
 import axios from 'axios';
 import NewsCard from '../Cards/NewsCard';
 import Grid from "@mui/material/Grid";
@@ -25,7 +21,7 @@ export default function News( ) {
   const final = news.map((newsItem, index) => {
     // console.log("Hello ");
   return (
-    <Grid item xs={12} md={6} lg={4}>
+    <Grid item xs={12} md={6} lg={4} key={index}>
                   <Paper
                     sx={{
                       p: 2,
