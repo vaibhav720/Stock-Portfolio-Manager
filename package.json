@@ -5,13 +5,14 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
-    "@mui/x-data-grid": "^5.8.0",
+    "@mui/x-data-grid": "^5.9.0",
     "@mui/x-data-grid-generator": "5.8.0",
     "@mui/x-data-grid-pro": "5.8.0",
     "axios": "^0.26.1",
     "firebase": "^9.6.10",
     "firebase-admin": "^10.0.2",
     "lightweight-charts": "3.8.0",
+    "puppeteer": "^13.6.0",
     "query-string": "^7.1.1",
     "react": "latest",
     "react-dom": "latest",
@@ -24,10 +25,10 @@
   },
   "description": "https://github.com/mui/material-ui/blob/v5.5.2/docs/data/material/components/app-bar/PrimarySearchAppBar.js",
   "devDependencies": {
-    "react-scripts": "latest"
+    "react-scripts": "^5.0.1"
   },
-  "name": "primarysearchappbar-material-demo-forked",
-  "title": "PrimarySearchAppBar Material Demo",
+  "name": "stock-portfolio-manager",
+  "title": "stock-portfolio-manager",
   "version": "0.0.56",
   "scripts": {
     "start": "react-scripts start",

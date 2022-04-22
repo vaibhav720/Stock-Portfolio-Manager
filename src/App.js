@@ -13,6 +13,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Adv from './Dashboard/Advchart';
 import LightWeightChartSelf from"./charts/LightWeightChart";
 import WatchList from './Dashboard/Home';
+
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -56,6 +57,7 @@ function App() {
              <Route exact path='/watchlist' element={<PrivateRoute/>}>
                 <Route exact path='/watchlist' element={<WatchList/>} />
              </Route>
+             
            </Routes>
          </AuthProvider>
 

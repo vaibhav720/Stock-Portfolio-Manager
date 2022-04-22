@@ -11,10 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 import Title from './Title';
 import axios from "axios";
-// Generate Order Data
-function createData(id, name, share, change, filingDate, transactionDate,transactionCode, transactionPrice) {
-  return { id, name, share, change, filingDate, transactionDate,transactionCode,transactionPrice };
-}
+
 
 
 
