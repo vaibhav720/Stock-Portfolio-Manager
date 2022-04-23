@@ -9,96 +9,98 @@ import { useAuth } from '../contexts/AuthContext';
 import Button from '@mui/material/Button';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
-
-const columns : GridColDef[] = [
-  
-  { field: "name", headerName: "Company Name", flex: 1 },
-  { field: "date", headerName: "date", flex: 1 },
-  {
-    field: "Today",
-    headerName: "Today", flex: 1
-  },
-  {
-    field: "Percent",
-    headerName: "Percent"
-  },
-  {
-    field: 'Add ',
-    headerName: 'Add',
-    sortable: false,
-    renderCell: (params) => {
-      const Add = (e) => {
-        e.stopPropagation(); // don't select this row after clicking
-
-        const api: GridApi = params.api;
-        const thisRow: Record<string, GridCellValue> = {};
-
-        api
-          .getAllColumns()
-          .filter((c) => c.field !== '__check__' && !!c)
-          .forEach(
-            (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
-          );
-
-        return alert(JSON.stringify(thisRow.name, null, 4));
-      };
-
-      return <Button onClick={Add} variant="contained" color="success">Add</Button>;
-    },
-  },
-  {
-    field: 'Remove ',
-    headerName: 'Remove',
-    sortable: false,
-    renderCell: (params) => {
-      const Remove = (e) => {
-        e.stopPropagation(); // don't select this row after clicking
-
-        const api: GridApi = params.api;
-        const thisRow: Record<string, GridCellValue> = {};
-
-        api
-          .getAllColumns()
-          .filter((c) => c.field !== '__check__' && !!c)
-          .forEach(
-            (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
-          );
-
-        return alert(JSON.stringify(thisRow.name, null, 4));
-      };
-
-      return <Button  onClick={Remove} variant="outlined" color="error">Remove</Button>;
-    },
-  },
-  {
-    field: 'Details',
-    headerName: 'Details',
-    sortable: false,
-    renderCell: (params) => {
-      const Remove = (e) => {
-        e.stopPropagation(); // don't select this row after clicking
-
-        const api: GridApi = params.api;
-        const thisRow: Record<string, GridCellValue> = {};
-
-        api
-          .getAllColumns()
-          .filter((c) => c.field !== '__check__' && !!c)
-          .forEach(
-            (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
-          );
-
-        return alert(JSON.stringify(thisRow.name, null, 4));
-      };
-
-      return <Button  ><Icon sx={{ color: green[500] }}>add_circle</Icon></Button>;
-    },
-  },
-];
-let co = 1;
+import Alert from '@mui/material/Alert';
 
 
 export default function UserList() {
+
+  const columns : GridColDef[] = [
+  
+    { field: "name", headerName: "Company Name", flex: 1 },
+    { field: "date", headerName: "date", flex: 1 },
+    {
+      field: "Today",
+      headerName: "Today", flex: 1
+    },
+    {
+      field: "Percent",
+      headerName: "Percent"
+    },
+    {
+      field: 'Add ',
+      headerName: 'Add',
+      sortable: false,
+      renderCell: (params) => {
+        const Add = (e) => {
+          e.stopPropagation(); // don't select this row after clicking
+          
+          const api: GridApi = params.api;
+          const thisRow: Record<string, GridCellValue> = {};
+      
+          api
+            .getAllColumns()
+            .filter((c) => c.field !== '__check__' && !!c)
+            .forEach(
+              (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+            );
+            
+          return <Alert severity="success">This is a success alert — check it out!</Alert>
+        };
+  
+        return <Button onClick={Add} variant="contained" color="success">Add</Button>;
+      },
+    },
+    {
+      field: 'Remove ',
+      headerName: 'Remove',
+      sortable: false,
+      renderCell: (params) => {
+        const Remove = (e) => {
+          e.stopPropagation(); // don't select this row after clicking
+  
+          const api: GridApi = params.api;
+          const thisRow: Record<string, GridCellValue> = {};
+  
+          api
+            .getAllColumns()
+            .filter((c) => c.field !== '__check__' && !!c)
+            .forEach(
+              (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+            );
+  
+          return alert(JSON.stringify(thisRow.name, null, 4));
+        };
+  
+        return <Button  onClick={Remove} variant="outlined" color="error">Remove</Button>;
+      },
+    },
+    {
+      field: 'Details',
+      headerName: 'Details',
+      sortable: false,
+      renderCell: (params) => {
+        const Details = (e) => {
+          e.stopPropagation(); // don't select this row after clicking
+  
+          const api: GridApi = params.api;
+          const thisRow: Record<string, GridCellValue> = {};
+  
+          api
+            .getAllColumns()
+            .filter((c) => c.field !== '__check__' && !!c)
+            .forEach(
+              (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+            );
+  
+          return alert(JSON.stringify(thisRow.name, null, 4));
+        };
+  
+        return <Button onClick={Details} ><Icon sx={{ color: green[500] }}>add_circle</Icon></Button>;
+      },
+    },
+  ];
+  let co = 1;
+  
   
 const [rows: GridRowsProp,setRows] =React.useState([]);
   const [quarterlyReports, setQuarterlyReports] = React.useState([]);
@@ -141,7 +143,7 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
   
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns}  rowBuffer="3"/>
+      <DataGrid rows={rows} columns={columns}  rowBuffer={3} />
     </div>
   );
 }

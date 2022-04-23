@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Adv from './Dashboard/Advchart';
 import LightWeightChartSelf from"./charts/LightWeightChart";
-import WatchList from './Dashboard/Home';
+import WatchList from './Dashboard/WatchList';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

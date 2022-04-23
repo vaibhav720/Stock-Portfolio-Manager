@@ -8,23 +8,16 @@ import { rows } from './indData';
 import { doc, setDoc, updateDoc,addDoc,collection, arrayUnion } from "firebase/firestore";
 import { auth, db } from '../Firebase';
 import { useAuth } from '../contexts/AuthContext';
-
+import { useNavigate } from 'react-router-dom';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function CheckboxesTags() {
   const {currentUser} = useAuth();
+  
+  const history = useNavigate();
+  
   async function onAdd(props){
-    // await addDoc(collection(db, "Users"), {
-    //   email: currentUser.email,
-    //   Stocks: arrayUnion({
-    //     date: "",
-    //     value:0,
-    //     quantity:0,
-    //     name:props.description,
-    //     symbol:props.displaySymbol
-    //   }
-    // })
     const washingtonRef = doc(db, "Users", currentUser.email);
     const values ={
       dates:"",
@@ -38,6 +31,7 @@ export default function CheckboxesTags() {
     await updateDoc(washingtonRef, {
      Stock: arrayUnion(values)
   });
+  history("/watchlist");
 }
     
   return (

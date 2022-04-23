@@ -12,10 +12,9 @@ import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import TablePagination from '@mui/material/TablePagination';
 import Title from './Title';
-import axios from "axios";
 import { doc, setDoc, updateDoc,addDoc,collection, arrayUnion } from "firebase/firestore";
 import { auth, db } from '../Firebase';
-
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function preventDefault(event) {
@@ -25,7 +24,7 @@ function preventDefault(event) {
 export default function Stocks() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const history = useNavigate();
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -35,16 +34,7 @@ export default function Stocks() {
   
   
   async function onAdd(props){
-    // await addDoc(collection(db, "Users"), {
-    //   email: currentUser.email,
-    //   Stocks: arrayUnion({
-    //     date: "",
-    //     value:0,
-    //     quantity:0,
-    //     name:props.description,
-    //     symbol:props.displaySymbol
-    //   }
-    // })
+
     const washingtonRef = doc(db, "Users", currentUser.email);
     const values ={
       dates:"",
@@ -58,6 +48,7 @@ export default function Stocks() {
     await updateDoc(washingtonRef, {
      Stock: arrayUnion(values)
   });
+    history("/watchlist")
 }
 
   const handleChangeRowsPerPage = (event) => {
