@@ -21,16 +21,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MainListItems from "./listItems";
 import SecondaryListItems from "./listItems2";
-import Chart from "./Chart";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
 import { deepPurple } from "@mui/material/colors";
-import MultiActionAreaCard from "../Cards/card";
-import FullFeaturedDemo from "../tables";
-import LightWeight from "../charts/LightWeightChart";
-//import { fetchData } from "../charts/data.js";
-import TradingWidget from "../charts/tradingView";
-import Quotes from "../charts/Quotes";
 import LightWeightChart from "../charts/LightWeightChart";
 
 function Copyright(props) {

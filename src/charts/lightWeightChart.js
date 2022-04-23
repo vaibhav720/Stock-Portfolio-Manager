@@ -1,9 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
 import { createChart, CrosshairMode } from "lightweight-charts";
-//import { priceData } from "./priceData";
-//import { areaData } from './areaData';
-//import { volumeData } from "./volumeData";
 
 import "./styles.css";
 

@@ -40,7 +40,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FeaturedPost from "../charts/Intro";
-
+import { useLocation } from 'react-router-dom';
 
 function Copyright(props) {
   return (

@@ -30,6 +30,7 @@ import { useNavigate } from 'react-router-dom';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Stocks from "./Stocks";
 import UserList from "../charts/UserList";
+import UserPortfolio from "../charts/UserPortfolio";
 
 function Copyright(props) {
   return (
@@ -206,6 +207,13 @@ function DashboardContent() {
           <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <UserList />
+                </Paper>
+              </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+          <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <UserPortfolio/>
                 </Paper>
               </Grid>
               </Grid>

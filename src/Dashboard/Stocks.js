@@ -1,25 +1,24 @@
-import * as React from 'react';
-
-import {useRef, useState,useEffect} from 'react'
-import Link from '@mui/material/Link';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { rows } from './indData';
-import IconButton from '@mui/material/IconButton';
-import Fingerprint from '@mui/icons-material/Fingerprint';
-import TablePagination from '@mui/material/TablePagination';
-import Title from './Title';
-import { doc, setDoc, updateDoc,addDoc,collection, arrayUnion } from "firebase/firestore";
-import { auth, db } from '../Firebase';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-
-function preventDefault(event) {
-  event.preventDefault();
-}
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { rows } from "./indData";
+import IconButton from "@mui/material/IconButton";
+import Fingerprint from "@mui/icons-material/Fingerprint";
+import TablePagination from "@mui/material/TablePagination";
+import Title from "./Title";
+import {
+  doc,
+  updateDoc,
+  addDoc,
+  collection,
+  arrayUnion,
+} from "firebase/firestore";
+import { db } from "../Firebase";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Stocks() {
   const [page, setPage] = React.useState(0);
@@ -28,28 +27,25 @@ export default function Stocks() {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-  
-  const[error,setError]= useState("");
-  const {currentUser, logout} = useAuth();
-  
-  
-  async function onAdd(props){
 
+  const { currentUser } = useAuth();
+
+  async function onAdd(props) {
     const washingtonRef = doc(db, "Users", currentUser.email);
-    const values ={
-      dates:"",
-      value:0,
-      quantity:0,
-      name:props.description,
-      symbol:props.displaySymbol
-     }
-     console.log(props);
-// Atomically add a new region to the "regions" array field.
+    const values = {
+      dates: "",
+      value: 0,
+      quantity: 0,
+      name: props.description,
+      symbol: props.symbol,
+    };
+    console.log(props);
+    // Atomically add a new region to the "regions" array field.
     await updateDoc(washingtonRef, {
-     Stock: arrayUnion(values)
-  });
-    history("/watchlist")
-}
+      Stock: arrayUnion(values),
+    });
+    history("/watchlist");
+  }
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -63,31 +59,34 @@ export default function Stocks() {
         <TableHead>
           <TableRow>
             <TableCell>Description</TableCell>
-            <TableCell>Display Symbol</TableCell>
+            <TableCell>symbol</TableCell>
             <TableCell>figi</TableCell>
             <TableCell>MIC</TableCell>
-            <TableCell>shareClassFIGI</TableCell>
-            
-            <TableCell>type</TableCell>
             <TableCell>Add in watch list</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,i) => (
-            <TableRow key={i}>
-              <TableCell>{row.description}</TableCell>
-              <TableCell>{row.displaySymbol}</TableCell>
-              <TableCell>{row.figi}</TableCell>
-              <TableCell>{row.mic}</TableCell>
-              <TableCell>{row.shareClassFIGI}</TableCell>
-              
-              <TableCell>{row.type}</TableCell>
-              <TableCell><IconButton type="submit" value={row} aria-label="fingerprint" onClick={()=>onAdd(row)} color="success">
-        <Fingerprint />
-      </IconButton>
-</TableCell>
-            </TableRow>
-          ))}
+          {rows
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((row, i) => (
+              <TableRow key={i}>
+                <TableCell>{row.description}</TableCell>
+                <TableCell>{row.symbol}</TableCell>
+                <TableCell>{row.figi}</TableCell>
+                <TableCell>{row.mic}</TableCell>
+                <TableCell>
+                  <IconButton
+                    type="submit"
+                    value={row}
+                    aria-label="fingerprint"
+                    onClick={() => onAdd(row)}
+                    color="success"
+                  >
+                    <Fingerprint />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
       <TablePagination
@@ -99,7 +98,6 @@ export default function Stocks() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      
     </React.Fragment>
   );
 }

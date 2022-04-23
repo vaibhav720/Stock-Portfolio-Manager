@@ -9,50 +9,33 @@ import Button from '@mui/material/Button';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
 import Alert from '@mui/material/Alert';
-import { useNavigate } from 'react-router-dom';
 
-export default function UserList() {
-  const history = useNavigate();
+
+export default function UserPortfolio() {
+
   const columns : GridColDef[] = [
   
     { field: "name", headerName: "Company Name", flex: 1 },
-    { field: "Symbol", headerName: "Symbol", flex: 1 },
+    { field: "Date", headerName: "date", flex: 1 },
     {
-      field: "Today",
-      headerName: "Today", flex: 1
+      field: "Quantity",
+      headerName: "Quantity", flex: 1
     },
     {
-      field: "Percent",
-      headerName: "Percent"
+      field: "Value",
+      headerName: "Value"
     },
     {
-      field: 'Add ',
-      headerName: 'Add',
-      sortable: false,
-      renderCell: (params) => {
-        const Add = (e) => {
-          e.stopPropagation(); // don't select this row after clicking
-          
-          const api: GridApi = params.api;
-          const thisRow: Record<string, GridCellValue> = {};
-      
-          api
-            .getAllColumns()
-            .filter((c) => c.field !== '__check__' && !!c)
-            .forEach(
-              (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
-            );
-            //console.log(thisRow)
-            history('/addStock',{state:thisRow});
-          return 
-        };
-  
-        return <Button onClick={Add} variant="contained" color="success">Add</Button>;
-      },
+        field:"Today",
+        headerName:"Today"
     },
     {
-      field: 'Remove ',
-      headerName: 'Remove',
+        field:"Gain",
+        headerName:"Gain"
+    },
+    {
+      field: 'Sell ',
+      headerName: 'Sell',
       sortable: false,
       renderCell: (params) => {
         const Remove = (e) => {
@@ -91,8 +74,8 @@ export default function UserList() {
             .forEach(
               (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
             );
-            history('/dashboard',{state:thisRow});
-          return 
+  
+          return alert(JSON.stringify(thisRow.name, null, 4));
         };
   
         return <Button onClick={Details} ><Icon sx={{ color: green[500] }}>add_circle</Icon></Button>;
@@ -107,32 +90,34 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
   const tem=[];
   const {currentUser, logout} = useAuth();
   async function fetchData() {
-        const washingtonRef = doc(db, "Users", currentUser.email);
+        const washingtonRef = doc(db, "Stocks", currentUser.email);
         const docSap= await getDoc(washingtonRef);
         const TemData=docSap.data(); 
-        const pData = TemData.Stock;
-        //console.log(docSap.data());
+        const pData = TemData.Add;
+        console.log(docSap.data());
 
-        //console.log(pData);
+        console.log(pData);
         for (var key in pData) {
           if (!pData.hasOwnProperty(key)) continue;
-          const aa="";
+          const aa=new Date(pData[key].dates/1000);
           const ab = {
-              id:pData[key].symbol,
+              id:co,
               name:pData[key].name,
-              Symbol:pData[key].symbol,
-              Today:pData[key].name,
-              Percent:pData[key].name,
+              date:aa,
+              Quantity:pData[key].quantity,
+              Value:pData[key].value,
+              Today:pData[key].quantity,
+              Gain:pData[key].value,
           }
-         // console.log(pData[key].name)
+          console.log(pData[key].name)
           tem.push(ab);
 
           co++;
         }
-        //console.log("rows");
+        console.log("rows");
         
         setRows(tem);
-       // console.log(tem);
+        console.log(tem);
       };
     
     useEffect(() => {

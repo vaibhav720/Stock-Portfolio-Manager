@@ -15,6 +15,8 @@ export function AuthProvider({children}) {
     async function signup(email,password)
     {
         const washingtonRef = doc(db, "Users", email);
+        const StockRef = doc(db, "Stocks", email);
+        await setDoc(StockRef,{email:email});
         await setDoc(washingtonRef,{email:email});
         return await auth.createUserWithEmailAndPassword(email,password);
     }

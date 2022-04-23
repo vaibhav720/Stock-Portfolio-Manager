@@ -24,7 +24,7 @@ export default function CheckboxesTags() {
       value:0,
       quantity:0,
       name:props.description,
-      symbol:props.displaySymbol
+      symbol:props.symbol
      }
      console.log(props);
 // Atomically add a new region to the "regions" array field.
