@@ -233,7 +233,7 @@ function DashboardContent() {
                     height: 240
                   }}
                 >
-                  <Chart />
+                  <Chart symbol={location.state.Symbol}/>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}

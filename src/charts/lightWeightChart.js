@@ -12,6 +12,8 @@ export default function LightWeightChartSelf() {
     const arr = [];
     const vol = [];
     const mov = [];
+    const exponentialMovingAverage=[];
+    let ema=0;
     const today = Math.ceil((new Date().getTime())/1000);
     const lastYear = Math.ceil((new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime())/1000);
    console.log(today);
@@ -42,6 +44,7 @@ export default function LightWeightChartSelf() {
             var tim = new Date(time[key] * 1000)
             var newTime = tim.toLocaleDateString("en-US");
             //console.log(newTime);
+            let temClose=parseInt(close[key], 10);
             maxima=Math.max(maxima,parseInt(close[key], 10));
             minima= Math.min(minima,parseInt(close[key], 10));
             var aa = {
@@ -51,6 +54,18 @@ export default function LightWeightChartSelf() {
               low: parseInt(low[key], 10),
               close: parseInt(close[key], 10)
             };
+            if(co===1)
+            {
+              ema=parseInt(close[key], 10);
+            }
+            else{
+              ema=ema+(temClose-ema)*(2/(15+1));
+            }
+            var dd={
+              time:newTime,
+              value:ema
+            }
+            exponentialMovingAverage.push(dd);
             var closePrice = parseInt(close[key], 10);
             avr = (avr * (co - 1) + closePrice) / co;
             var cc = {
@@ -66,7 +81,7 @@ export default function LightWeightChartSelf() {
             arr.push(aa);
             mov.push(cc);
           })
-         // console.log(arr);
+          console.log(exponentialMovingAverage);
           console.log("2");
           chart.current = createChart(chartContainerRef.current, {
             width: chartContainerRef.current.clientWidth,
@@ -129,6 +144,29 @@ export default function LightWeightChartSelf() {
           });
 
           areaSeries.setData(mov);
+
+          const exponentialMovingAverageSeries = chart.current.addLineSeries({
+            color: "#FF5733",
+            lineStyle: 0,
+            lineWidth: 1,
+            crosshairMarkerVisible: true,
+            crosshairMarkerRadius: 6,
+            crosshairMarkerBorderColor: "#ffffff",
+            crosshairMarkerBackgroundColor: "#2296f3",
+            lineType: 1,
+            autoscaleInfoProvider: () => ({
+              priceRange: {
+                minValue: maxima,
+                maxValue: minima
+              },
+              margins: {
+                above: (maxima-minima)/20,
+                below: (maxima-minima)/20
+              }
+            })
+          });
+
+          exponentialMovingAverageSeries.setData(exponentialMovingAverage);
 
           areaSeries.setMarkers([
             {
