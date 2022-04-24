@@ -203,7 +203,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               <Stocks/>
-              <NewsLoad />
+              <NewsLoad basic="news?category=general"/>
               
             </Grid>
             <Copyright sx={{ pt: 4 }} />

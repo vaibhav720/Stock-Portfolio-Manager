@@ -209,9 +209,7 @@ function DashboardContent() {
                   <UserList />
                 </Paper>
               </Grid>
-              </Grid>
-              <Grid container spacing={3}>
-          <Grid item xs={12}>
+              <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <UserPortfolio/>
                 </Paper>

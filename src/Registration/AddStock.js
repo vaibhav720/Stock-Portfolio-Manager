@@ -61,7 +61,7 @@ export default function AddStock() {
                 symbol: location.state.Symbol
             }
             //console.log(values);
-            await setDoc(washingtonRef, {
+            await updateDoc(washingtonRef, {
                 Add: arrayUnion(values)
              });
                history("/watchlist")

@@ -276,7 +276,7 @@ function DashboardContent() {
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
-              <NewsLoad symbol={location.state.Symbol}/>
+              <NewsLoad symbol={location.state.Symbol} basic="company-news?symbol="/>
               
             </Grid>
             <Copyright sx={{ pt: 4 }} />

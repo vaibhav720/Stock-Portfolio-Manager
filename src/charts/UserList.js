@@ -10,7 +10,8 @@ import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
 import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
-
+import Title from "../Dashboard/Title";
+import axios from 'axios';
 export default function UserList() {
   const history = useNavigate();
   const columns : GridColDef[] = [
@@ -116,13 +117,24 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
         //console.log(pData);
         for (var key in pData) {
           if (!pData.hasOwnProperty(key)) continue;
+          let newData=[]
+          const url="https://finnhub.io/api/v1/quote?symbol=".concat(pData[key].symbol,"&token=c94i99aad3if4j50rvn0")
+          await axios.get(url).then(res => {
+          const pData = res.data;
+          newData.push(pData);
+          
+        }).catch(err=>{
+          console.log(err);
+        })
+           console.log(newData)
+
           const aa="";
           const ab = {
               id:pData[key].symbol,
               name:pData[key].name,
               Symbol:pData[key].symbol,
-              Today:pData[key].name,
-              Percent:pData[key].name,
+              Today:newData[0]["c"],
+              Percent:newData[0]["dp"],
           }
          // console.log(pData[key].name)
           tem.push(ab);
@@ -142,8 +154,12 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
      
   
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <React.Fragment>
+      <Title>Watch List</Title>
+      <div style={{ height: 400, width: '100%' }}>
       <DataGrid rows={rows} columns={columns}  rowBuffer={3} />
     </div>
+    </React.Fragment>
+    
   );
 }
