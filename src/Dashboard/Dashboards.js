@@ -115,7 +115,7 @@ function DashboardContent() {
   const[error,setError]= useState("");
   const {currentUser, logout} = useAuth();
   const history = useNavigate();
-  
+  const location = useLocation();
   async function handleLogout(){
     setError('');
     try{
@@ -283,25 +283,25 @@ function DashboardContent() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Orders />
+                  <Orders symbol={location.state.Symbol}/>
                 </Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <FullFeaturedDemo />
+                  <FullFeaturedDemo symbol={location.state.Symbol}/>
                 </Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <Suspense fallback={<h1>Loading profile...</h1>}>
-                    <TradingWidget />
+                    <TradingWidget symbol={location.state.Symbol}/>
                   </Suspense>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
-              <NewsLoad />
+              <NewsLoad symbol={location.state.Symbol}/>
               
             </Grid>
             <Copyright sx={{ pt: 4 }} />

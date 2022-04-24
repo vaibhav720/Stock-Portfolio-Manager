@@ -86,15 +86,17 @@ const columns : GridColDef[] = [
 let co = 1;
 
 
-export default function Table() {
+export default function Table(props) {
   
 const [rows: GridRowsProp,setRows] =React.useState([]);
   const [quarterlyReports, setQuarterlyReports] = React.useState([]);
   const tem=[];
   const fetchData = () => {
+    const url ="https://www.alphavantage.co/query?function=CASH_FLOW&symbol=".concat(props.symbol,"&apikey=A3QPG0GAAYX8VGI2"); 
+    console.log(url);
     axios
       .get(
-        `https://www.alphavantage.co/query?function=CASH_FLOW&symbol=IBM&apikey=A3QPG0GAAYX8VGI2`
+        url
       )
       .then((res) => {
         const pData = res.data["quarterlyReports"];

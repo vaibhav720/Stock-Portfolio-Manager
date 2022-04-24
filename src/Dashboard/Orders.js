@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import Title from './Title';
 import axios from "axios";
 
-export default function Orders() {
+export default function Orders(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -23,7 +23,9 @@ export default function Orders() {
   };
   const [rows,setRows]= React.useState([]);
   const fetchData = () => {
-  axios.get("https://finnhub.io/api/v1/stock/insider-transactions?symbol=AAPL&token=c94i99aad3if4j50rvn0").then(res=>{
+    console.log(props.symbol);
+    const url= "https://finnhub.io/api/v1/stock/insider-transactions?symbol=".concat(props.symbol,"&token=c94i99aad3if4j50rvn0")
+  axios.get(url).then(res=>{
     const pData= res.data;
     console.log(pData);
     setRows(pData["data"]);

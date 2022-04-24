@@ -8,19 +8,20 @@ import {
   TechnicalAnalysis
 } from "react-ts-tradingview-widgets";
 
-export default function TradingWidget() {
+export default function TradingWidget(props) {
+  const symbol ="NASDAQ:".concat(props.symbol);
   return (
     <div className="App">
       <div style={{ height: 500 }}>
         <TradingViewWidget
-          symbol="NASDAQ:AAPL"
+          symbol={symbol}
           theme={Themes.DARK}
           locale="en"
           autosize
         />
       </div>
 
-      <TechnicalAnalysis symbol={"NASDAQ:AAPL"} dark locale="es" />
+      <TechnicalAnalysis symbol={symbol} dark locale="en" />
 
       <MarketOverview locale="en" />
     </div>

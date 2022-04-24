@@ -5,11 +5,12 @@ import NewsCard from '../Cards/NewsCard';
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-export default function News( ) {
+export default function News(props) {
     const [news,setNews]= React.useState([])
     
     const fetchData = () => {
-    axios.get("https://finnhub.io/api/v1/company-news?symbol=AAPL&from=2022-03-03&to=2022-04-04&token=c94i99aad3if4j50rvn0").then(res => {
+      const url="https://finnhub.io/api/v1/company-news?symbol=".concat(props.symbol,"&from=2022-03-03&to=2022-04-04&token=c94i99aad3if4j50rvn0")
+    axios.get(url).then(res => {
       const pData=res.data;
       console.log(pData);
       setNews(pData);

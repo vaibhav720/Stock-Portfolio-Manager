@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { rows } from './indData';
+import { rows } from './Symbol';
 import { doc, setDoc, updateDoc,addDoc,collection, arrayUnion } from "firebase/firestore";
 import { auth, db } from '../Firebase';
 import { useAuth } from '../contexts/AuthContext';
@@ -17,7 +17,13 @@ export default function CheckboxesTags() {
   
   const history = useNavigate();
   
+  const filterOptions = createFilterOptions({
+    matchFrom: 'any',
+    limit: 500,
+  });
+
   async function onAdd(props){
+    console.log(props);
     const washingtonRef = doc(db, "Users", currentUser.email);
     const values ={
       dates:"",
@@ -36,11 +42,12 @@ export default function CheckboxesTags() {
     
   return (
     <Autocomplete
+      filterOptions={filterOptions}
       multiple
       id="checkboxes-tags-demo"
       options={rows}
       disableCloseOnSelect
-      getOptionLabel={(option) => option.description}
+      getOptionLabel={(option) => option.symbol}
       renderOption={(props, option, { selected }) => (
         <li {...props} style={{color:"black"}}>
           <Checkbox
@@ -50,7 +57,7 @@ export default function CheckboxesTags() {
             checked={selected}
             onChange={()=>onAdd(option)}
           />
-          {option.description}
+          {option.symbol}
         </li>
       )}
       style={{ width: 500,color:"black" }}
