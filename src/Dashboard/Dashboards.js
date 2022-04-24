@@ -23,7 +23,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MainListItems from "./listItems";
 import SecondaryListItems from "./listItems2";
-import Chart from "./Chart";
+import Chart from "./RSIChart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { deepPurple } from "@mui/material/colors";
@@ -246,7 +246,7 @@ function DashboardContent() {
                     height: 240
                   }}
                 >
-                  <Deposits />
+                  <Quotes symbol={location.state.Symbol} />
                 </Paper>
               </Grid>
               {/* Recent Orders */}

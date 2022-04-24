@@ -9,10 +9,37 @@ export default function News(props) {
     const [news,setNews]= React.useState([])
     
     const fetchData = () => {
-      const url="https://finnhub.io/api/v1/company-news?symbol=".concat(props.symbol,"&from=2022-03-03&to=2022-04-04&token=c94i99aad3if4j50rvn0")
+      const today = new Date();
+  const pastDate = new Date();
+  let Day1=today.getDate();
+  let Day2=pastDate.getDate();
+  let Month1=today.getMonth();
+  if(today.getMonth()<10)
+  {
+    Month1="0"+today.getMonth();
+  }
+
+  let Month2=pastDate.getMonth();
+  if(pastDate.getMonth()<10)
+  {
+      Month2="0"+pastDate.getMonth()  
+  }
+
+  if(today.getDate()<10)
+  {
+    Day1="0"+today.getDate();
+  }
+
+  if(pastDate.getDate()<10)
+  {
+    Day2="0"+pastDate.getDate();  
+  }
+  const Year1=today.getFullYear();
+  const Year2=pastDate.getFullYear();
+      const url="https://finnhub.io/api/v1/company-news?symbol=".concat(props.symbol,"&from=",Year2,"-",Month2,"-",Day2,"&to=",Year1,"-",Month1,"-",Day1,"&token=c94i99aad3if4j50rvn0")
     axios.get(url).then(res => {
       const pData=res.data;
-      //console.log(pData);
+      //console.log(url);
       setNews(pData);
     })   
   }

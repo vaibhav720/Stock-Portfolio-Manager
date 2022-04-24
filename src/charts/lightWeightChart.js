@@ -13,6 +13,8 @@ export default function LightWeightChartSelf() {
     const vol = [];
     const mov = [];
     const exponentialMovingAverage=[];
+    const WMA=[];
+    let movingAverage=0;
     let ema=0;
     const today = Math.ceil((new Date().getTime())/1000);
     const lastYear = Math.ceil((new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime())/1000);

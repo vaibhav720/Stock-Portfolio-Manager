@@ -9,11 +9,12 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function Quotes( ) {
+export default function Quotes(props) {
         const [quotesData,setQuotesData] = React.useState({}) ;
         const fetchData = () => {
-            axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=GGYN50DSU734HJ1G`).then(res => {
-            const pData = res.data["Global Quote"];
+          const url="https://finnhub.io/api/v1/quote?symbol=".concat(props.symbol,"&token=c94i99aad3if4j50rvn0")
+            axios.get(url).then(res => {
+            const pData = res.data;
             setQuotesData(pData);
             
           }).catch(err=>{
@@ -30,19 +31,19 @@ export default function Quotes( ) {
     <React.Fragment>
       <Title>Quotes</Title>
       <Typography component="p" variant="h5">
-        Symbol: {quotesData["01. symbol"]}
+        Current: {quotesData["c"]}
       </Typography>
       <Typography component="p" variant="h6">
-        Open: {quotesData["02. open"]}
+        Change: {quotesData["d"]}
       </Typography>
       <Typography component="p" variant="h6">
-        Volume: {quotesData["06. volume"]}
+        Percent: {quotesData["dp"]}
       </Typography>
       <Typography component="p" variant="h6">
-        Price: {quotesData["05. price"]}
+        Previous: {quotesData["pc"]}
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-        Percentage {quotesData["10. change percent"]}
+        High {quotesData["h"]}
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>

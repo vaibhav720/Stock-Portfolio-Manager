@@ -10,9 +10,7 @@ import {
 } from "recharts";
 import Title from "./Title";
 import { useEffect, useRef } from "react";
-import { createChart, CrosshairMode } from "lightweight-charts";
-import { useLocation } from "react-router-dom";
-// Generate Sales Data
+// Generate RSI Data
 
 export default function Chart(props) {
   const theme = useTheme();
