@@ -60,7 +60,7 @@ export default function AddStock() {
                 name: location.state.name,
                 symbol: location.state.Symbol
             }
-            console.log(values);
+            //console.log(values);
             await setDoc(washingtonRef, {
                 Add: arrayUnion(values)
              });

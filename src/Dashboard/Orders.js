@@ -23,11 +23,11 @@ export default function Orders(props) {
   };
   const [rows,setRows]= React.useState([]);
   const fetchData = () => {
-    console.log(props.symbol);
+    //console.log(location);
     const url= "https://finnhub.io/api/v1/stock/insider-transactions?symbol=".concat(props.symbol,"&token=c94i99aad3if4j50rvn0")
   axios.get(url).then(res=>{
     const pData= res.data;
-    console.log(pData);
+   // console.log(pData);
     setRows(pData["data"]);
   })
 }
@@ -51,8 +51,8 @@ useEffect(() => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-            <TableRow >
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,index) => (
+            <TableRow key={index}>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.share}</TableCell>
               <TableCell>{row.change}</TableCell>

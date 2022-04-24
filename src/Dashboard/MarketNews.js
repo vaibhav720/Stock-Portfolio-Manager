@@ -116,7 +116,7 @@ function DashboardContent() {
 }
 
   const toggleDrawer = () => {
-    console.log(234);
+    //console.log(234);
     setOpen(!open);
   };
 

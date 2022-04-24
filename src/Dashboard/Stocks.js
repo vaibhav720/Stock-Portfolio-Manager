@@ -39,7 +39,7 @@ export default function Stocks() {
       name: props.description,
       symbol: props.symbol,
     };
-    console.log(props);
+    //console.log(props);
     // Atomically add a new region to the "regions" array field.
     await updateDoc(washingtonRef, {
       Stock: arrayUnion(values),

@@ -23,7 +23,7 @@ export default function CheckboxesTags() {
   });
 
   async function onAdd(props){
-    console.log(props);
+    //console.log(props);
     const washingtonRef = doc(db, "Users", currentUser.email);
     const values ={
       dates:"",
@@ -32,7 +32,7 @@ export default function CheckboxesTags() {
       name:props.description,
       symbol:props.symbol
      }
-     console.log(props);
+    // console.log(props);
 // Atomically add a new region to the "regions" array field.
     await updateDoc(washingtonRef, {
      Stock: arrayUnion(values)

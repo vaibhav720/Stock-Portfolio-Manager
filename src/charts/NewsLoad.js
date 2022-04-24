@@ -12,7 +12,7 @@ export default function News(props) {
       const url="https://finnhub.io/api/v1/company-news?symbol=".concat(props.symbol,"&from=2022-03-03&to=2022-04-04&token=c94i99aad3if4j50rvn0")
     axios.get(url).then(res => {
       const pData=res.data;
-      console.log(pData);
+      //console.log(pData);
       setNews(pData);
     })   
   }

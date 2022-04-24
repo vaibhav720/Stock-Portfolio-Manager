@@ -93,7 +93,7 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
   const tem=[];
   const fetchData = () => {
     const url ="https://www.alphavantage.co/query?function=CASH_FLOW&symbol=".concat(props.symbol,"&apikey=A3QPG0GAAYX8VGI2"); 
-    console.log(url);
+    //console.log(url);
     axios
       .get(
         url
@@ -102,7 +102,7 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
         const pData = res.data["quarterlyReports"];
         
         setQuarterlyReports(pData);
-        console.log(pData);
+       // console.log(pData);
         for (var key in quarterlyReports) {
           if (!quarterlyReports.hasOwnProperty(key)) continue;
           tem[key] = { id: co, desk: co };
@@ -110,10 +110,10 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
 
           co++;
         }
-        console.log("rows");
+        //console.log("rows");
         
         setRows(tem);
-        console.log(tem);
+       // console.log(tem);
       });
     }
     useEffect(() => {

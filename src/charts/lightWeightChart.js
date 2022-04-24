@@ -1,38 +1,49 @@
 import React, { useEffect, useRef } from "react";
 import { createChart, CrosshairMode } from "lightweight-charts";
-
+import { useLocation } from 'react-router-dom';
 import "./styles.css";
 
 export default function LightWeightChartSelf() {
   const chartContainerRef = useRef();
   const chart = useRef();
   const resizeObserver = useRef();
-
+  const location = useLocation();
   
     const arr = [];
     const vol = [];
     const mov = [];
+    const today = Math.ceil((new Date().getTime())/1000);
+    const lastYear = Math.ceil((new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime())/1000);
+   console.log(today);
+   console.log(lastYear);
+    const url ="https://finnhub.io/api/v1/stock/candle?symbol=".concat(location.state.Symbol,"&resolution=D&from=",lastYear,"&to=",today,"&token=c94i99aad3if4j50rvn0")
     //var str={"time":'2022-1-1',"open":50,"high":45,"low":34,"close":34};
-    let API_Call = `https://finnhub.io/api/v1/stock/candle?symbol=AAPL&resolution=D&from=1618670788&to=1650205236&token=c94i99aad3if4j50rvn0`;
+    //console.log(url);
+    let API_Call = url;
+    let maxima=0;
+    let minima=100000;
     const fetchData = async () => {
       await fetch(API_Call)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
+
           let close = data["c"];
           let open = data["o"];
           let volume = data["v"];
           let time = data["t"];
           let high = data["h"];
           let low = data["l"];
-          console.log(data);
+         // console.log(data);
           var co = 1;
           var avr = 0;
           time.forEach((num1, key) =>{
             var tim = new Date(time[key] * 1000)
             var newTime = tim.toLocaleDateString("en-US");
-            console.log(newTime);
+            //console.log(newTime);
+            maxima=Math.max(maxima,parseInt(close[key], 10));
+            minima= Math.min(minima,parseInt(close[key], 10));
             var aa = {
               time: newTime,
               open: parseInt(open[key], 10),
@@ -55,7 +66,7 @@ export default function LightWeightChartSelf() {
             arr.push(aa);
             mov.push(cc);
           })
-          console.log(arr);
+         // console.log(arr);
           console.log("2");
           chart.current = createChart(chartContainerRef.current, {
             width: chartContainerRef.current.clientWidth,
@@ -83,7 +94,7 @@ export default function LightWeightChartSelf() {
             }
           });
 
-          console.log(chart.current);
+          console.log(maxima);
 
           const candleSeries = chart.current.addCandlestickSeries({
             upColor: "#4bffb5",
@@ -107,12 +118,12 @@ export default function LightWeightChartSelf() {
             lineType: 1,
             autoscaleInfoProvider: () => ({
               priceRange: {
-                minValue: 130,
-                maxValue: 210
+                minValue: maxima,
+                maxValue: minima
               },
               margins: {
-                above: 2,
-                below: 2
+                above: (maxima-minima)/20,
+                below: (maxima-minima)/20
               }
             })
           });
@@ -153,7 +164,7 @@ export default function LightWeightChartSelf() {
           });
 
           const priceLine = areaSeries.createPriceLine({
-            price: 150.0,
+            price: (maxima+minima)/2,
             color: "green",
             lineWidth: 2,
 
@@ -162,7 +173,7 @@ export default function LightWeightChartSelf() {
           });
 
           priceLine.applyOptions({
-            price: 150.0,
+            price: (maxima+minima)/2,
             color: "red",
             lineWidth: 3,
             axisLabelVisible: false,

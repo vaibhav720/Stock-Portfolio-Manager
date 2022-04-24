@@ -41,6 +41,7 @@ import { useNavigate } from 'react-router-dom';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FeaturedPost from "../charts/Intro";
 import { useLocation } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 function Copyright(props) {
   return (
@@ -129,10 +130,15 @@ function DashboardContent() {
 }
   
   const toggleDrawer = () => {
-    console.log(234);
+    //console.log(234);
     setOpen(!open);
   };
 
+  function AdvanceChart(props)
+  {
+    console.log(props);
+    history("/lightWeight",{state:props});
+  }
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -215,45 +221,8 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                <MultiActionAreaCard />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                  <MultiActionAreaCard />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 240
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
+              
+              
               {/* Chart */}
               <Grid item xs={12} md={8} lg={9}>
                 <Paper
@@ -298,6 +267,12 @@ function DashboardContent() {
                   <Suspense fallback={<h1>Loading profile...</h1>}>
                     <TradingWidget symbol={location.state.Symbol}/>
                   </Suspense>
+                </Paper>
+              </Grid>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <Button onClick={()=>AdvanceChart(location.state)} >Advance Chart</Button>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}

@@ -94,7 +94,7 @@ function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   
   const toggleDrawer = () => {
-    console.log(234);
+    //console.log(234);
     setOpen(!open);
   };
   
