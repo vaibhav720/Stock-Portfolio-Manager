@@ -22,7 +22,7 @@
 
 
 ### API and widgets  used
-
+- Used Web Scrapping to fetch data about top Gainer and loser and other important updates
 - [Alpha Vantage](https://www.alphavantage.co/documentation/)
 - [Finnhub](https://finnhub.io/docs/api/websocket-trades)
 - [IEX cloud](https://iexcloud.io/docs/api/)
@@ -37,6 +37,22 @@
 - Axios (To fecth data of API)
 
 ## Things developed
+
+### Watch list 
+
+![image](https://user-images.githubusercontent.com/56918464/165073224-88f6be9a-dd4b-4c98-ad0f-53c7784f16da.png)
+
+### Portfolio
+
+![image](https://user-images.githubusercontent.com/56918464/165073338-43b8283b-6b31-4726-a293-93d91cd999f8.png)
+
+### Company details with RSI (Relative Strength Index) and Quotes
+
+![image](https://user-images.githubusercontent.com/56918464/165073551-78409584-bf7e-4d07-b603-da23573a2e1c.png)
+
+### Advance Chart with Smart Tools with Exponential Moving Average (EMA)
+
+![image](https://user-images.githubusercontent.com/56918464/165074058-45f556b9-9a24-441c-9f4d-7b49ae508afb.png)
 
 ### Stock News page:
 
