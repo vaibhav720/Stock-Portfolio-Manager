@@ -72,7 +72,6 @@
 ### Stock Data with smart tools
 ![image](https://user-images.githubusercontent.com/56918464/163532959-0a7fa9b5-2ee7-4811-a7d5-b0a6a64837c2.png)
 
-### Description about company
 
 ### Stock listing in particular MIC
 ![image](https://user-images.githubusercontent.com/56918464/163714112-843453ce-96fb-4aec-9289-5337a8cee6c0.png)
