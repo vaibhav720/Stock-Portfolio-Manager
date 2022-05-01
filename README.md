@@ -88,8 +88,6 @@
 ![image](https://user-images.githubusercontent.com/56918464/163514415-8a88b7f3-dc90-4339-acc1-18a0d32878e8.png)
 
 
-### financial report of company
-
 ### Last few days insider trading details
 ![image](https://user-images.githubusercontent.com/56918464/163514483-252e2bdf-91cf-4ac5-9484-af648e59e39d.png)
 
