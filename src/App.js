@@ -3,7 +3,7 @@ import Signup from './Registration/SignUp';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter , Routes, Route} from "react-router-dom";
 import Dashboard from './Dashboard/Dashboards';
-import Login from './Registration/SignIn';
+import Login from './Registration/Signin';
 import PrivateRoute from './PrivateRoute';
 import UpdateProfile from './UpdateProfile';
 import MarketNews from './Dashboard/MarketNews';
