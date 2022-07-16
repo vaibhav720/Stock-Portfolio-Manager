@@ -4,16 +4,34 @@
 
 ### Motivation
 
+- To make an open source stock portfolio manager where developers and investors can contribute and add new features based on their requirements.
 
-- Beginners usually don't have the method to the knowledge of the company they are investing which leads to problems.
-- Idea was to provide maximum data as possible from various sources. 
-- Provide methods some of the analysis are made so that users can learn and understand it better. 
-- Provide a few drawing tools and Technical indicators like SMA, EMA, DEMA, WMA and etc in OHLC charts.
-- Proper financial report, a Person can find data about as many companies as possible. 
-- Basic practice on the graphs and understanding them. Can test their decision by virtually buying some amount.
-- Proper and multiple data sources for good accuracy. Some learning sites to expand their knowledge.
+- I started developing this project to learn to react for a while I learned many new things. And I hope many people will get benefit from it.
+
+- I have many ideas for it, like online autonomous excel file management of customer data. People can share their reviews like reddit.
+
+-  I am still a learner, so feel free to tell changes or for improvement.
 
 
+
+### How to run?
+
+``` bash
+# clone repo
+gh repo clone vaibhav720/Stock-Portfolio-Manager
+# install dependencies
+npm install
+# start development server
+npm start
+```
+
+### For improvement or to contribute to this project please go to the issue tab or contact through the below LinkedIn page.
+
+###  For contribution, create a branch, and you can edit as per requirement.
+
+### You can all connect with me on LinkedIn.
+
+[![Generic badge](https://img.shields.io/badge/LinkedIn-Connect-blue.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vaibhav-parikh-9b13b61a3/)
 
 ### About project
 
@@ -94,19 +112,7 @@
 ![image](https://user-images.githubusercontent.com/56918464/163514483-252e2bdf-91cf-4ac5-9484-af648e59e39d.png)
 
 
-### Sentiment analysis of people on Reddit and Twitter for particular company
-
-[![Generic badge](https://img.shields.io/badge/LinkedIn-Connect-blue.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vaibhav-parikh-9b13b61a3/)
 
 
-### How to run?
 
-``` bash
-# clone repo
-gh repo clone vaibhav720/Stock-Portfolio-Manager
-# install dependencies
-npm install
-# start development server
-npm start
-```
 
