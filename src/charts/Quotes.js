@@ -1,13 +1,9 @@
 import * as React from 'react';
-import {useRef, useState,useEffect} from 'react'
-import Link from '@mui/material/Link';
+import {useEffect} from 'react'
 import Typography from '@mui/material/Typography';
 import Title from '../Dashboard/Title';
 import axios from 'axios';
 
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 export default function Quotes(props) {
         const [quotesData,setQuotesData] = React.useState({}) ;
@@ -45,11 +41,7 @@ export default function Quotes(props) {
       <Typography color="text.secondary" sx={{ flex: 1 }}>
         High {quotesData["h"]}
       </Typography>
-      <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
-      </div>
+      
     </React.Fragment>
   );
 }

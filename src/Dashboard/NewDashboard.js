@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Chart from "./RSIChart";
 import Orders from "./Orders";
-import FullFeaturedDemo from "../tables";
 //import { fetchData } from "../charts/data.js";
 import TradingWidget from "../charts/tradingView";
 import Quotes from "../charts/Quotes";
@@ -71,11 +70,7 @@ if(location.state.Symbol===null)
                 </Paper>
               </Grid>
               {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <FullFeaturedDemo symbol={location.state.Symbol}/>
-                </Paper>
-              </Grid>
+              
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>

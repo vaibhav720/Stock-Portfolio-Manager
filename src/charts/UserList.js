@@ -3,12 +3,11 @@ import React from 'react';
 import {useEffect} from 'react'
 import { DataGrid, GridColDef, GridApi, GridCellValue } from '@mui/x-data-grid';
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from '../Firebase';
+import {  db } from '../Firebase';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '@mui/material/Button';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
-import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
 import Title from "../Dashboard/Title";
 import axios from 'axios';
@@ -105,9 +104,8 @@ export default function UserList() {
   
   
 const [rows: GridRowsProp,setRows] =React.useState([]);
-  const [quarterlyReports, setQuarterlyReports] = React.useState([]);
   const tem=[];
-  const {currentUser, logout} = useAuth();
+  const {currentUser} = useAuth();
   async function fetchData() {
         const washingtonRef = doc(db, "Users", currentUser.email);
         const docSap= await getDoc(washingtonRef);
@@ -129,7 +127,6 @@ const [rows: GridRowsProp,setRows] =React.useState([]);
         })
            console.log(newData)
 
-          const aa="";
           const ab = {
               id:pData[key].symbol,
               name:pData[key].name,

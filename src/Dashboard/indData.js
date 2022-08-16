@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const rows=[
     {
      "description": "FANSUNITE ENTERTAINMENT INC.",

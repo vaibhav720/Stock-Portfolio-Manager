@@ -19,7 +19,7 @@ export default function CheckboxesTags() {
   
   const filterOptions = createFilterOptions({
     matchFrom: 'any',
-    limit: 50,
+    limit: 10,
   });
 
   async function onAdd(props){

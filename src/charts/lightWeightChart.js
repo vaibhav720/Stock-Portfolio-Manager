@@ -3,6 +3,7 @@ import { createChart, CrosshairMode } from "lightweight-charts";
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 import "./styles.css";
 
 export default function LightWeightChartSelf() {
@@ -29,7 +30,7 @@ else if(location.state.Symbol===null)
     let movingAverage=0;
     let ema=0;
     const today = Math.ceil((new Date().getTime())/1000);
-    const lastYear = Math.ceil((new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime())/1000);
+    const lastYear = Math.ceil((new Date(new Date().setFullYear(new Date().getFullYear() - 0.5)).getTime())/1000);
    console.log(today);
    console.log(lastYear);
     const url ="https://finnhub.io/api/v1/stock/candle?symbol=".concat(location.state.Symbol,"&resolution=D&from=",lastYear,"&to=",today,"&token=c94i99aad3if4j50rvn0")
@@ -190,20 +191,20 @@ else if(location.state.Symbol===null)
 
           areaSeries.setMarkers([
             {
-              time: "2022-03-09",
+              time: "2022-05-09",
               position: "aboveBar",
               color: "black",
               shape: "arrowDown"
             },
             {
-              time: "2022-02-19",
+              time: "2022-05-19",
               position: "belowBar",
               color: "red",
               shape: "arrowUp",
               id: "id3"
             },
             {
-              time: "2022-02-14",
+              time: "2022-05-14",
               position: "belowBar",
               color: "orange",
               shape: "arrowUp",
@@ -239,7 +240,7 @@ else if(location.state.Symbol===null)
           });
           const coordinate = areaSeries.priceToCoordinate(150.5);
           
-          const screenshot = chart.current.takeScreenshot();
+          
 
           const volumeSeries = chart.current.addHistogramSeries({
             color: "#182233",
@@ -258,15 +259,17 @@ else if(location.state.Symbol===null)
         });
 
       console.log("1");
-      resizeObserver.current = new ResizeObserver((entries) => {
-        const { width, height } = entries[0].contentRect;
-        chart.current.applyOptions({ width, height });
-        setTimeout(() => {
+      
+        resizeObserver.current = new ResizeObserver((entries) => {
+          const { width, height } = entries[0].contentRect;
           chart.current.timeScale().fitContent();
-        }, 0);
-      });
-
-      resizeObserver.current.observe(chartContainerRef.current);
+          chart.current.applyOptions({ width, height });
+          
+        });
+  
+        resizeObserver.current.observe(chartContainerRef.current);
+      
+      
 
       return () => resizeObserver.current.disconnect();
     };
@@ -274,10 +277,11 @@ else if(location.state.Symbol===null)
     fetchData();
   },[fetchData]);
 
-
+console.log("chart container refernece ",chartContainerRef.current)
   return (
     <div className="App">
-      <div ref={chartContainerRef} className="chart-container" />
+      {chartContainerRef.current? <div ref={chartContainerRef} className="chart-container" />:<CircularProgress color="success" />}
+     
     </div>
   );
 }

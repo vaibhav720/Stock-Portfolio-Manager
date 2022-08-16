@@ -9,7 +9,13 @@ export default function News(props) {
   const [news, setNews] = React.useState([]);
 
   const fetchData = () => {
-    const today = new Date();
+    
+    let url = "";
+    if (props.basic === "news?category=general") {
+      url =
+        "https://finnhub.io/api/v1/news?category=general&token=c94i99aad3if4j50rvn0";
+    } else {
+      const today = new Date();
     const pastDate = new Date();
     let Day1 = today.getDate();
     let Day2 = pastDate.getDate();
@@ -32,11 +38,6 @@ export default function News(props) {
     }
     const Year1 = today.getFullYear();
     const Year2 = pastDate.getFullYear();
-    let url = "";
-    if (props.basic === "news?category=general") {
-      url =
-        "https://finnhub.io/api/v1/news?category=general&token=c94i99aad3if4j50rvn0";
-    } else {
       url = "https://finnhub.io/api/v1/".concat(
         props.basic,
         props.symbol,
@@ -64,22 +65,22 @@ export default function News(props) {
   useEffect(() => {
     fetchData();
   }, []);
-  const final = news.map((newsItem, index) => {
-    // console.log("Hello ");
-    return (
-      <Grid item xs={12} md={6} lg={4} key={index}>
-        <Paper
-          sx={{
-            p: 2,
-            display: "flex",
-            flexDirection: "column",
-            height: 450,
-          }}
-        >
-          <NewsCard data={newsItem} />
-        </Paper>
-      </Grid>
-    );
-  });
-  return <>{final}</>;
+  let final1 =[];
+  for(let i=0;i<news.length && i<10;i++ )
+  {
+    final1.push(<Grid item xs={12} md={6} lg={4} key={i}>
+      <Paper
+        sx={{
+          p: 2,
+          display: "flex",
+          flexDirection: "column",
+          height: 450,
+        }}
+      >
+        <NewsCard data={news[i]} />
+      </Paper>
+    </Grid>)
+  }
+  
+  return <>{final1}</>;
 }
