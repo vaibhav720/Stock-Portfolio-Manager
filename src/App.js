@@ -14,7 +14,7 @@ import Adv from './Dashboard/Advchart';
 import LightWeightChartSelf from"./charts/LightWeightChart";
 import WatchList from './Dashboard/WatchList';
 import AddStock from './Registration/AddStock';
-
+  
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 

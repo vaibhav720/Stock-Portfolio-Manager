@@ -1,3 +1,4 @@
+import React from "react";
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
 /* import TechnicalAnalysis, {
   THEMES,

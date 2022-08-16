@@ -16,21 +16,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useAuth} from "../contexts/AuthContext";
 import {  useNavigate } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
+import Copyright from '../components/Copyright';
 
-function Copyright(props) {
-  
 
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="">
-        Vaibhav Parikh
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 
