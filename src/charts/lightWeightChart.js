@@ -272,7 +272,7 @@ else if(location.state.Symbol===null)
     };
     useEffect(() => {
     fetchData();
-  });
+  },[fetchData]);
 
 
   return (

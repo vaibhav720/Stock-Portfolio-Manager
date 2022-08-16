@@ -14,6 +14,8 @@ import Adv from './Dashboard/Advchart';
 import LightWeightChartSelf from"./charts/LightWeightChart";
 import WatchList from './Dashboard/WatchList';
 import AddStock from './Registration/AddStock';
+import BasicPage from './components/BasicPage';
+import NewDashboard from './Dashboard/NewDashboard';
   
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -46,9 +48,7 @@ function App() {
              <Route exact path='/' element={<PrivateRoute/>}>
                 <Route exact path='/' element={<MarketNews/>} />
              </Route>
-             <Route exact path='/dashboard' element={<PrivateRoute/>}>
-                <Route exact path='/dashboard' element={<Dashboard/>} />
-             </Route>
+             
              <Route exact path='/advanceChart' element={<PrivateRoute/>}>
                 <Route exact path='/advanceChart' element={<Adv/>} />
              </Route>
@@ -60,6 +60,10 @@ function App() {
              </Route>
              <Route exact path='/addStock' element={<PrivateRoute/>}>
                 <Route exact path='/addStock' element={<AddStock/>} />
+             </Route>
+
+             <Route exact path='/dashboard' element={<PrivateRoute/>}>
+                <Route exact path='/dashboard' element={<NewDashboard/>} />
              </Route>
            </Routes>
          </AuthProvider>
