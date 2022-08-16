@@ -110,7 +110,14 @@ function DashboardContent() {
         setError("Failed to logout");
     }
 }
-  console.log(currentUser)
+if(currentUser===null)
+{
+  history('/login');
+}
+else if(location.state.Symbol===null)
+{
+  history('/');
+}
   const toggleDrawer = () => {
     //console.log(234);
     setOpen(!open);
@@ -118,7 +125,7 @@ function DashboardContent() {
 
   function AdvanceChart(props)
   {
-    console.log(props);
+    console.log("CALLING LIGHT WEIGHT CHART ",props);
     history("/lightWeight",{state:props});
   }
   return (
@@ -158,7 +165,7 @@ function DashboardContent() {
               </Badge>
             </IconButton>
             <IconButton color="inherit">
-              <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>{currentUser.email[0].toUpperCase()}</Avatar>
             </IconButton>
             <IconButton color="inherit"  onClick={handleLogout}>
               <Badge color="secondary">

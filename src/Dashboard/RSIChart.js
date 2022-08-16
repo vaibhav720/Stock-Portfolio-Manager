@@ -22,7 +22,7 @@ export default function Chart(props) {
   let dnAverage = 0;
   const today = Math.ceil(new Date().getTime() / 1000);
   const lastYear = Math.ceil(
-    new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).getTime() / 1000
+    new Date(new Date().getTime() - 10 * 24 * 60 * 60 * 1000).getTime() / 1000
   );
   const url = "https://finnhub.io/api/v1/stock/candle?symbol=".concat(
     props.symbol,

@@ -92,6 +92,7 @@ export default function UserList() {
             .forEach(
               (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
             );
+            console.log(thisRow);
             history('/dashboard',{state:thisRow});
           return 
         };

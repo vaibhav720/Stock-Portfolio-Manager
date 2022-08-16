@@ -25,12 +25,12 @@ export default function MainListItems ()
   }
 
   function Dashboard(){
-    history('/dashboard');
+    history('/dashboard',{state:{Symbol:"TSLA"}});
   }
 
 
 function Advchart(){
-  history('/lightWeight');
+  history('/lightWeight',{state:{Symbol:"TSLA"}});
 }
   return  <React.Fragment>
   <ListItemButton onClick={Home}>
@@ -52,16 +52,11 @@ function Advchart(){
     <ListItemText primary="Dashboard" />
   </ListItemButton>
   <ListItemButton onClick={Advchart}> 
-    <ListItemIcon>
-      <BarChartIcon />
-    </ListItemIcon>
-    <ListItemText primary="Charts" />
-  </ListItemButton>
-  <ListItemButton>
+    
     <ListItemIcon>
       <LayersIcon />
     </ListItemIcon>
-    <ListItemText primary="Integrations" />
+    <ListItemText primary="Dow Jones" />
   </ListItemButton>
 </React.Fragment>
 }

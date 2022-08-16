@@ -30,24 +30,9 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Stocks from "./Stocks";
 import UserList from "../charts/UserList";
 import UserPortfolio from "../charts/UserPortfolio";
+import Copyright from "../components/Copyright";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        by Vaibhav Parikh
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
 
 const drawerWidth = 240;
 
@@ -115,7 +100,10 @@ function DashboardContent() {
         setError("Failed to logout");
     }
 }
-
+if(currentUser===null)
+{
+  history('/login');
+}
   const toggleDrawer = () => {
     //console.log(234);
     setOpen(!open);
@@ -150,7 +138,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Home
+              Your WatchList
             </Typography>
             <CheckboxesTags/>
             <IconButton color="inherit">
@@ -159,7 +147,7 @@ function DashboardContent() {
               </Badge>
             </IconButton>
             <IconButton color="inherit">
-              <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
+              <Avatar sx={{ bgcolor: deepPurple[500] }}>{currentUser.email[0].toUpperCase()}</Avatar>
             </IconButton>
             <IconButton color="inherit"  onClick={handleLogout}>
               <Badge color="secondary">

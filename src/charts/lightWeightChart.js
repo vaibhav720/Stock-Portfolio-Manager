@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { createChart, CrosshairMode } from "lightweight-charts";
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import "./styles.css";
 
 export default function LightWeightChartSelf() {
@@ -8,7 +10,17 @@ export default function LightWeightChartSelf() {
   const chart = useRef();
   const resizeObserver = useRef();
   const location = useLocation();
-  
+  const {currentUser} = useAuth();
+  const history = useNavigate();
+  console.log(location.state.Symbol)
+  if(currentUser===null)
+{
+  history('/login');
+}
+else if(location.state.Symbol===null)
+{
+  history('/');
+}
     const arr = [];
     const vol = [];
     const mov = [];
@@ -32,7 +44,17 @@ export default function LightWeightChartSelf() {
           return response.json();
         })
         .then(function (data) {
-
+          console.log("printing data c ",data["c"])
+          if(typeof(data['c'])==="undefined")
+          {
+            history('/');
+            return
+          }
+          else if(data['c'].length<200)
+          {
+            history('/');
+            return
+          }
           let close = data["c"];
           let open = data["o"];
           let volume = data["v"];
@@ -83,8 +105,6 @@ export default function LightWeightChartSelf() {
             arr.push(aa);
             mov.push(cc);
           })
-          console.log(exponentialMovingAverage);
-          console.log("2");
           chart.current = createChart(chartContainerRef.current, {
             width: chartContainerRef.current.clientWidth,
             height: chartContainerRef.current.clientHeight,
@@ -111,7 +131,6 @@ export default function LightWeightChartSelf() {
             }
           });
 
-          console.log(maxima);
 
           const candleSeries = chart.current.addCandlestickSeries({
             upColor: "#4bffb5",
@@ -121,7 +140,6 @@ export default function LightWeightChartSelf() {
             wickDownColor: "#838ca1",
             wickUpColor: "#838ca1"
           });
-          console.log("3");
           candleSeries.setData(arr);
 
           const areaSeries = chart.current.addLineSeries({
@@ -220,7 +238,7 @@ export default function LightWeightChartSelf() {
             title: "P/L 600"
           });
           const coordinate = areaSeries.priceToCoordinate(150.5);
-          console.log(coordinate);
+          
           const screenshot = chart.current.takeScreenshot();
 
           const volumeSeries = chart.current.addHistogramSeries({
