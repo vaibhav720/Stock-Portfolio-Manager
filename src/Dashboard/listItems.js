@@ -3,7 +3,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import HomeIcon from '@mui/icons-material/Home';
@@ -49,14 +48,14 @@ function Advchart(){
     <ListItemIcon>
       <DashboardIcon />
     </ListItemIcon>
-    <ListItemText primary="Dashboard" />
+    <ListItemText primary="Tesla Dashboard" />
   </ListItemButton>
   <ListItemButton onClick={Advchart}> 
     
     <ListItemIcon>
       <LayersIcon />
     </ListItemIcon>
-    <ListItemText primary="Dow Jones" />
+    <ListItemText primary="Tesla Advance Chart" />
   </ListItemButton>
 </React.Fragment>
 }

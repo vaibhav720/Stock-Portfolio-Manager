@@ -125,7 +125,7 @@ else if(location.state.Symbol===null)
 
   function AdvanceChart(props)
   {
-    console.log("CALLING LIGHT WEIGHT CHART ",props);
+    console.log("CALLING LIGHT WEIGHT CHART",props);
     history("/lightWeight",{state:props});
   }
   return (
