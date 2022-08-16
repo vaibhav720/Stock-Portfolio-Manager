@@ -19,7 +19,7 @@ export default function CheckboxesTags() {
   
   const filterOptions = createFilterOptions({
     matchFrom: 'any',
-    limit: 500,
+    limit: 50,
   });
 
   async function onAdd(props){
@@ -47,17 +47,18 @@ export default function CheckboxesTags() {
       id="checkboxes-tags-demo"
       options={rows}
       disableCloseOnSelect
-      getOptionLabel={(option) => option.symbol}
+      getOptionLabel={(option) => option.description}
       renderOption={(props, option, { selected }) => (
-        <li {...props} style={{color:"black"}}>
+        <li {...props} style={{color:"black"}} key={option.symbol}>
           <Checkbox
+          key={option.symbol}
             icon={icon}
             checkedIcon={checkedIcon}
             style={{ marginRight: 8,color:"black" }}
             checked={selected}
             onChange={()=>onAdd(option)}
           />
-          {option.symbol}
+          {option.description}
         </li>
       )}
       style={{ width: 500,color:"black" }}

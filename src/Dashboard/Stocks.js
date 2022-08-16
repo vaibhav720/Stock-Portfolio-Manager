@@ -12,8 +12,6 @@ import Title from "./Title";
 import {
   doc,
   updateDoc,
-  addDoc,
-  collection,
   arrayUnion,
 } from "firebase/firestore";
 import { db } from "../Firebase";

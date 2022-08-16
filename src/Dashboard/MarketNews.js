@@ -1,7 +1,6 @@
 import * as React from "react";
-import  {useRef, useState} from 'react';
-import axios from 'axios';
-import { Suspense, useEffect, Component } from "react";
+import  { useState} from 'react';
+import { Suspense,  Component } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -119,7 +118,7 @@ function DashboardContent() {
     //console.log(234);
     setOpen(!open);
   };
-
+  console.log(error);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
