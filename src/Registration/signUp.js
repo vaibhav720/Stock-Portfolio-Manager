@@ -17,7 +17,7 @@ import {useAuth} from "../contexts/AuthContext";
 import {  useNavigate } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import Copyright from '../components/Copyright';
-
+import photo from '../asset/images/stock_photo.jpg'
 
 
 const theme = createTheme();
@@ -65,7 +65,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dHJhZGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],

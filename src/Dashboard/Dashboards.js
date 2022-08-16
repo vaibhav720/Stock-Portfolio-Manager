@@ -27,13 +27,11 @@ import Chart from "./RSIChart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import { deepPurple } from "@mui/material/colors";
-import MultiActionAreaCard from "../Cards/card";
 import FullFeaturedDemo from "../tables";
 import LightWeight from "../charts/LightWeightChart";
 //import { fetchData } from "../charts/data.js";
 import TradingWidget from "../charts/tradingView";
 import Quotes from "../charts/Quotes";
-import {loadNews} from "../API/Fetchapi";
 import NewsCard from "../Cards/NewsCard";
 import NewsLoad from "../charts/NewsLoad";
 import { useAuth } from '../contexts/AuthContext';
@@ -42,24 +40,9 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FeaturedPost from "../charts/Intro";
 import { useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Copyright from "../components/Copyright";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        by Vaibhav Parikh
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
 
 const drawerWidth = 240;
 

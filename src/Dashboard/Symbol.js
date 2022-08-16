@@ -114823,4 +114823,4 @@ export const rows=[
      "description": "ZINC ONE RESOURCES INC",
      "symbol": "ZZZOF"
     }
-   ]
+   ];

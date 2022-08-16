@@ -18,20 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import { doc, setDoc, updateDoc, addDoc, collection, arrayUnion, Timestamp } from "firebase/firestore";
 import { useLocation } from 'react-router-dom';
 import { auth, db } from '../Firebase';
-function Copyright(props) {
+import Copyright from '../components/Copyright';
 
-
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="">
-                Vaibhav Parikh
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 const theme = createTheme();
 
@@ -40,7 +28,6 @@ export default function AddStock() {
     const quantityRef = useRef();
     const valueRef = useRef();
     const { currentUser, signup } = useAuth();
-    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useNavigate();
     const location = useLocation();
@@ -79,7 +66,7 @@ export default function AddStock() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random)',
+                        backgroundImage: 'url(https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dHJhZGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
