@@ -1,6 +1,6 @@
 # Stock-Portfolio-Manager
 
-#### Live:- [https://stock-portfolio-manager-ec897.web.app/login](https://stock-portfolio-manager-ec897.web.app/home) 
+#### Live:- [https://stock-portfolio-manager-ec897.web.app/home](https://stock-portfolio-manager-ec897.web.app/home) 
 
 ### Motivation
 
