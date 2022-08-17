@@ -160,7 +160,8 @@ if(currentUser===null)
   };
 
   function handleClick(){
-    if(darkMode===createTheme())
+    console.log(darkMode);
+    if(darkMode.palette.mode==="light")
     {
       setDarkMode(createTheme({
         palette: {
@@ -181,6 +182,7 @@ if(currentUser===null)
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         {/* appbar component starts here */}
+        
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
