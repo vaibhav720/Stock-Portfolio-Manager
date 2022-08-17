@@ -2,7 +2,8 @@
 
 # dependencies
 /node_modules
-
+/src/Firebase.js
+/src/FireStore.js
 # testing
 /coverage
 
