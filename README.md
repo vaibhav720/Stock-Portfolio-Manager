@@ -1,6 +1,6 @@
 # Stock-Portfolio-Manager
 
-#### Live:- [https://stock-portfolio-manager-ec897.web.app/login](https://stock-portfolio-manager-ec897.web.app/login) 
+#### Live:- [https://stock-portfolio-manager-ec897.web.app/home](https://stock-portfolio-manager-ec897.web.app/home) 
 
 ### Motivation
 
@@ -57,6 +57,9 @@ npm start
 
 ## Things developed
 
+### Home page 
+
+![image](https://user-images.githubusercontent.com/56918464/185074258-7ab60f62-516b-4c64-9e14-44c2a16b32d2.png)
 
 ### Watch list 
 
